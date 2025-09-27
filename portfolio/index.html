@@ -10,7 +10,8 @@
             padding: 0;
             box-sizing: border-box;
         }
-body {
+
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: #e8e6e3;
@@ -30,13 +31,23 @@ body {
             transition: all 0.3s ease;
         }
 
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #edbb99;
+        }
+
         nav ul {
             list-style: none;
             display: flex;
-            justify-content: flex-end;
             align-items: center;
             gap: 2rem;
-            flex-wrap: nowrap;
         }
 
         nav a {
@@ -70,6 +81,78 @@ body {
 
         nav a:hover::after {
             width: 80%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 21px;
+            justify-content: space-between;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #edbb99;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: rgba(26, 26, 46, 0.95);
+                backdrop-filter: blur(15px);
+                width: 100%;
+                height: calc(100vh - 70px);
+                padding: 2rem 0;
+                transition: right 0.5s ease;
+                gap: 0;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 1.5rem;
+                border-radius: 0;
+                width: 100%;
+            }
+
+            nav ul li a:hover {
+                background: rgba(237, 187, 153, 0.1);
+            }
         }
 
         /* Sections */
@@ -319,21 +402,21 @@ body {
             width: 100%;
             margin-bottom: 2rem;
         }
-        select {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff; /* Or any readable color like #000 if on white background */
-    border: none;
-    border-radius: 8px;
-    padding: 0.8rem;
-    font-size: 1rem;
-    appearance: none; /* For consistent look */
-}
 
-/* For option text inside dropdown */
-select option {
-    color: black;  /* Important: readable text in dropdown */
-    background-color: white; /* Make sure text is visible on hover/select */
-}
+        select {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem;
+            font-size: 1rem;
+            appearance: none;
+        }
+
+        select option {
+            color: black;
+            background-color: white;
+        }
 
         /* Additional Professional Touches */
         .accent-text {
@@ -417,6 +500,7 @@ select option {
             gap: 1rem;
             margin-top: 2rem;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .social-icon {
@@ -519,17 +603,25 @@ select option {
 
         /* Responsive */
         @media (max-width: 768px) {
-            nav ul {
-                flex-wrap: wrap;
-                gap: 1rem;
+            h1 { 
+                font-size: 2rem; 
+                margin-bottom: 1rem;
+            }
+            
+            h2 { 
+                font-size: 1.8rem; 
+                margin-bottom: 1.5rem;
             }
 
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.8rem; }
+            section {
+                padding: 80px 1rem 30px;
+                min-height: auto;
+            }
 
             .about-container {
                 flex-direction: column;
                 text-align: center;
+                gap: 2rem;
             }
 
             .about-content {
@@ -540,12 +632,69 @@ select option {
                 flex: none;
             }
 
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+
             .projects-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-card {
+                height: 250px;
             }
 
             .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .publications-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .social-links {
+                gap: 0.8rem;
+            }
+
+            .social-icon {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { 
+                font-size: 1.8rem; 
+            }
+            
+            h2 { 
+                font-size: 1.5rem; 
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .project-card {
+                height: 220px;
+            }
+
+            .card-front, .card-back {
+                padding: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -554,7 +703,7 @@ select option {
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#about" class="logo">Kalyan Kumar</a>
+            <div class="logo">Kalyan Kumar</div>
             <div class="hamburger" onclick="toggleMobileMenu()">
                 <span></span>
                 <span></span>
@@ -584,7 +733,7 @@ select option {
                 <p style="text-align: center; margin-top: 1rem; font-weight: 500;">Full Stack Developer & Data Scientist</p>
             </div>
             <div class="about-content">
-               <p>I’m a passionate Full Stack Developer and Data Scientist with a strong foundation in both software engineering and machine learning. I specialize in building intelligent, data-driven applications using modern frontend frameworks and scalable backend systems.</p>
+               <p>I'm a passionate Full Stack Developer and Data Scientist with a strong foundation in both software engineering and machine learning. I specialize in building intelligent, data-driven applications using modern frontend frameworks and scalable backend systems.</p>
 
 <p>With hands-on experience in deploying machine learning models, crafting clean UIs, and working with cloud tools, I bridge the gap between development and data science. I'm driven by a desire to build impactful solutions, automate processes, and extract meaningful insights from data.</p>
 
@@ -816,17 +965,6 @@ select option {
   <img src="https://www.svgrepo.com/show/303161/gmail-icon-logo.svg" alt="Gmail" width="32" height="32">
 </a>
 
-
-       <a href="https://twitter.com/kalyankumar" class="social-icon twitter-icon" title="X (Twitter)" target="_blank">
-  <div class="x-icon-circle">
-    <svg width="24" height="24" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
-      <path fill="white" d="M714.168 579.911L1170.24 58.9019H1072.59L661.45 520.511L337.08 58.9019H0L489.1 745.738L0 1205.88H97.6498L533.93 714.812L872.08 1205.88H1200L714.168 579.911ZM586.378 638.861L542.788 583.779L142.78 135.48H290.59L635.51 596.636L679.1 651.717L1088.95 1099.37H941.14L586.378 638.861Z"/>
-    </svg>
-  </div>
-</a>
-
-
-
             <a href="tel:+91 83410 83203" class="social-icon phone-icon" title="Phone">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
@@ -847,13 +985,25 @@ select option {
     </div>
 
     <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            if (navMenu && hamburger) {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            }
+        }
+
         // Smooth scrolling
         function scrollToSection(sectionId) {
             document.getElementById(sectionId).scrollIntoView({
                 behavior: 'smooth'
             });
+            // Close mobile menu after clicking a link
+            toggleMobileMenu();
         }
-
+        
         // Video modal functions
         function openVideoModal(demoId) {
             const modal = document.getElementById('videoModal');
@@ -931,8 +1081,6 @@ select option {
     });
 }
 
-
-
         // Close modal when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('videoModal');
@@ -980,4 +1128,4 @@ select option {
         });
     </script>
 </body>
-</html>
+</html> 
