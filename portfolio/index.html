@@ -10,8 +10,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-        body {
+body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: #e8e6e3;
@@ -31,23 +30,13 @@
             transition: all 0.3s ease;
         }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #edbb99;
-        }
-
         nav ul {
             list-style: none;
             display: flex;
+            justify-content: flex-end;
             align-items: center;
             gap: 2rem;
+            flex-wrap: nowrap;
         }
 
         nav a {
@@ -81,78 +70,6 @@
 
         nav a:hover::after {
             width: 80%;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            width: 30px;
-            height: 21px;
-            justify-content: space-between;
-        }
-
-        .hamburger span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: #edbb99;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-        /* Mobile Navigation */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            nav ul {
-                position: fixed;
-                top: 70px;
-                right: -100%;
-                flex-direction: column;
-                background: rgba(26, 26, 46, 0.95);
-                backdrop-filter: blur(15px);
-                width: 100%;
-                height: calc(100vh - 70px);
-                padding: 2rem 0;
-                transition: right 0.5s ease;
-                gap: 0;
-            }
-
-            nav ul.active {
-                right: 0;
-            }
-
-            nav ul li {
-                width: 100%;
-                text-align: center;
-            }
-
-            nav ul li a {
-                display: block;
-                padding: 1.5rem;
-                border-radius: 0;
-                width: 100%;
-            }
-
-            nav ul li a:hover {
-                background: rgba(237, 187, 153, 0.1);
-            }
         }
 
         /* Sections */
@@ -402,21 +319,21 @@
             width: 100%;
             margin-bottom: 2rem;
         }
-
         select {
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 0.8rem;
-            font-size: 1rem;
-            appearance: none;
-        }
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff; /* Or any readable color like #000 if on white background */
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    appearance: none; /* For consistent look */
+}
 
-        select option {
-            color: black;
-            background-color: white;
-        }
+/* For option text inside dropdown */
+select option {
+    color: black;  /* Important: readable text in dropdown */
+    background-color: white; /* Make sure text is visible on hover/select */
+}
 
         /* Additional Professional Touches */
         .accent-text {
@@ -500,7 +417,6 @@
             gap: 1rem;
             margin-top: 2rem;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
         .social-icon {
@@ -603,25 +519,17 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 { 
-                font-size: 2rem; 
-                margin-bottom: 1rem;
-            }
-            
-            h2 { 
-                font-size: 1.8rem; 
-                margin-bottom: 1.5rem;
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
             }
 
-            section {
-                padding: 80px 1rem 30px;
-                min-height: auto;
-            }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
 
             .about-container {
                 flex-direction: column;
                 text-align: center;
-                gap: 2rem;
             }
 
             .about-content {
@@ -632,69 +540,12 @@
                 flex: none;
             }
 
-            .profile-image {
-                width: 250px;
-                height: 250px;
-            }
-
             .projects-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .project-card {
-                height: 250px;
             }
 
             .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .publications-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .contact-form {
-                padding: 1.5rem;
-            }
-
-            .social-links {
-                gap: 0.8rem;
-            }
-
-            .social-icon {
-                width: 45px;
-                height: 45px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 { 
-                font-size: 1.8rem; 
-            }
-            
-            h2 { 
-                font-size: 1.5rem; 
-            }
-
-            .profile-image {
-                width: 200px;
-                height: 200px;
-            }
-
-            .project-card {
-                height: 220px;
-            }
-
-            .card-front, .card-back {
-                padding: 1.5rem;
-            }
-
-            .btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -703,7 +554,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">Kalyan Kumar</div>
+            <a href="#about" class="logo">Kalyan Kumar</a>
             <div class="hamburger" onclick="toggleMobileMenu()">
                 <span></span>
                 <span></span>
@@ -726,14 +577,14 @@
         <div class="about-container">
             <div class="profile-section">
                <div class="profile-image">
-    <img src="C:\Users\ASUS\OneDrive\Desktop\portfolio\kalyan-image.jpg" alt="Kalyan Kumar"
+    <img src="kalyan-image.jpg" alt="Kalyan Kumar"
          style="width: 100%; height: 100%; object-fit: cover; object-position: center 10%;">
 </div>
 
                 <p style="text-align: center; margin-top: 1rem; font-weight: 500;">Full Stack Developer & Data Scientist</p>
             </div>
             <div class="about-content">
-               <p>I'm a passionate Full Stack Developer and Data Scientist with a strong foundation in both software engineering and machine learning. I specialize in building intelligent, data-driven applications using modern frontend frameworks and scalable backend systems.</p>
+               <p>I’m a passionate Full Stack Developer and Data Scientist with a strong foundation in both software engineering and machine learning. I specialize in building intelligent, data-driven applications using modern frontend frameworks and scalable backend systems.</p>
 
 <p>With hands-on experience in deploying machine learning models, crafting clean UIs, and working with cloud tools, I bridge the gap between development and data science. I'm driven by a desire to build impactful solutions, automate processes, and extract meaningful insights from data.</p>
 
@@ -996,25 +847,13 @@
     </div>
 
     <script>
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const navMenu = document.getElementById('nav-menu');
-            const hamburger = document.querySelector('.hamburger');
-            if (navMenu && hamburger) {
-                navMenu.classList.toggle('active');
-                hamburger.classList.toggle('active');
-            }
-        }
-
         // Smooth scrolling
         function scrollToSection(sectionId) {
             document.getElementById(sectionId).scrollIntoView({
                 behavior: 'smooth'
             });
-            // Close mobile menu after clicking a link
-            toggleMobileMenu();
         }
-        
+
         // Video modal functions
         function openVideoModal(demoId) {
             const modal = document.getElementById('videoModal');
@@ -1091,6 +930,8 @@
         alert('There was an error sending your message. Please try again later.');
     });
 }
+
+
 
         // Close modal when clicking outside
         window.onclick = function(event) {
